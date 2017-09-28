@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1506609844 source:c:\users\koauaai\documents\tandj\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+
