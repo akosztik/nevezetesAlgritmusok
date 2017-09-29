@@ -9,8 +9,8 @@
 using namespace std;
 
 int GraphFiller(vector<vector<int> > &Graph, ifstream &f );
-void MB(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs);
-void MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &talalkozas, bool &korseta,int jerry);
+int MB(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs);
+int MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &talalkozas, bool &korseta,int jerry);
 
 int main()
 {
@@ -39,25 +39,28 @@ int main()
     GraphFiller(JerryGraph, f);
 
     f.close();
-    /*
+
     vector<int> rooms;
+
+    for (int j=0;j<roomNumbers;j++){
+        rooms.push_back(0);
+    }
 
     MB(TomGraph,rooms,homeOfTom);
 
-    for (int j=0;j<roomNumbers;j++){
-        rooms[j]=0;
-    }
     if (rooms[homeOfJerry]==1){
 			cout <<"true and false";
 
     }else{
 			bool talalkozas=false;
 			bool korseta=false;
+
+			cout << "eddig ok----------" << talalkozas;
 			MB2(JerryGraph,rooms,homeOfJerry,talalkozas,korseta,homeOfJerry);
-			cout << talalkozas+" and "+korseta ;
+			cout << boolalpha << talalkozas<<" and "<< boolalpha << korseta ;
 
     }
-    */
+
     return 0;
 
 
@@ -106,30 +109,46 @@ int GraphFiller(vector<vector<int> > &Graph,ifstream &f ){
     return 0;
 
 }
-/*
-void MB(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs)
+
+int MB(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs)
 {
     rooms[startcsucs]=1;
+    cout << "startcsucs: "<< startcsucs << "\n";
+    cout << "size: "<< Graph[startcsucs].size() << "\n";
 	for (int i=0;i<Graph[startcsucs].size();i++){
-		if (rooms[i]==0){
-			MB(Graph,rooms,i);
+        int j= Graph[startcsucs][i];
+        cout << "szomszédok:  "<< j << "\n";
+		if (rooms[j]==0){
+            cout << "----------start:  "<< j << "\n";
+			MB(Graph,rooms,j);
 		}
 	}
+	cout << "szinezett? 1:  "<< rooms[startcsucs] << "\n";
+	return 0;
 }
-void MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &talalkozas, bool &korseta,int jerry)
+int MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &talalkozas, bool &korseta,int jerry)
 {
-	if (talalkozas && korseta == false ){
+	if (!talalkozas || !korseta ){
 		rooms[startcsucs]=2;
+		cout << "startcsucs: "<< startcsucs << "\n";
 		for (int i=0;i<Graph[startcsucs].size();i++){
-			if (rooms[i]==0){
-				MB2(Graph,rooms,i,talalkozas,korseta,jerry);
-			}else if(rooms[i]==1){
+            int j= Graph[startcsucs][i];
+            cout << "szomszédok:  "<< j << "\n";
+			if (rooms[j]==0){
+                cout << "----------start:  "<< j << "\n";
+				MB2(Graph,rooms,j,talalkozas,korseta,jerry);
+			}else if(rooms[j]==1){
+			    cout << "----------találkoztak:  "<< j << "\n";
 				talalkozas=true;
-			}else if(rooms[i]==2){
-				if (startcsucs==jerry && i!=jerry){
+			}else if(rooms[j]==2){
+			    cout << "----------kör:  "<< j << "\n";
+			    cout << "----------startcsucs:  "<< startcsucs << "\n";
+			    cout << "----------jerry:  "<< jerry << "\n";
+				if ( j==jerry && startcsucs!=jerry){
 					korseta=true;
 				}
 			}
 		}
 	}
-}*/
+	return 0;
+}
