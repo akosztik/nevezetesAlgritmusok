@@ -70,3 +70,7 @@ segítség
 
 http://www.informatom.hu/sze/01/LGB_SZ001/Cormen-Lieserson-Rivest-Stein.-.Uj.algoritmusok.pdf
     http://cs.bme.hu/bsz2/paros_graf_elszinezese.pdf
+    
+    http://web.cs.elte.hu/blobs/diplomamunkak/msc_alkmat/2013/locsine_vandor_zsofia.pdf
+    
+    https://hu.wikipedia.org/wiki/Gr%C3%A1fok_sz%C3%ADnez%C3%A9se
