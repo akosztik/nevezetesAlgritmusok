@@ -1,4 +1,6 @@
 https://fi.inf.elte.hu/adatszerkezet/implementalas/69/index.htm
+http://www.cs.ubbcluj.ro/~kasa/graph/mgraf.pdf
+https://hu.wikipedia.org/wiki/P%C3%A1ros_gr%C3%A1f
 
 Egy versenyre jelentkezett N ember. Bármely két ember vagy ismeri egymást, vagy nem (feltesszük, hogy ha A ismeri B-t, akkor B is ismeri A-t). Kérdés, be tudjuk-e a résztvevőket két csoportba osztani úgy, hogy egy csoporton belül ne legyenek ismerős párok? Ha igen, adjunk meg egy lehetséges csoportosítást, ha nem, akkor írjuk ki, hogy nem létezik ilyen csoportosítás.
 
