@@ -14,7 +14,7 @@ int MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &tala
 
 int main()
 {
-    ifstream f("input0.txt");
+    ifstream f("input6.txt");
 
     if(f.fail()){
         cout << "Nincs meg a fájl!\n";
@@ -34,17 +34,18 @@ int main()
     cout << homeOfJerry << "\n";
     vector<vector<int> > TomGraph;
     vector<vector<int> > JerryGraph;
-
-    GraphFiller(TomGraph, f);
-    GraphFiller(JerryGraph, f);
-
-    f.close();
-
     vector<int> rooms;
 
     for (int j=0;j<roomNumbers;j++){
         rooms.push_back(0);
+        vector<int> x;
+        x.push_back(-1);
+        TomGraph.push_back(x);
+        JerryGraph.push_back(x);
     }
+    GraphFiller(TomGraph, f);
+    GraphFiller(JerryGraph, f);
+    f.close();
 
     MB(TomGraph,rooms,homeOfTom);
 
@@ -71,43 +72,28 @@ int main()
 
 int GraphFiller(vector<vector<int> > &Graph,ifstream &f ){
     string str;
-    getline(f,str);
     int from,to;
+    getline(f,str);
     cout << "string: " +  str + "\n";
     istringstream is(str);
     is >> from >> to;
     from=from-1;
     to=to-1;
-    cout <<  from << " " << to << "\n";
-    int var=0;
-
-    while( !f.fail() && var!=-2){
-        cout<< var << " \n";
-        vector<int> x;
-        while(!f.fail() && var==from ){
-                cout << from << ", "<< to << "\n";
-                x.push_back(to);
-                var=from;
-                getline(f,str);
-                cout << "loop-string: "+  str + "\n";
-                istringstream ls(str);
-                ls >> from >> to;
-                from=from-1;
-                to=to-1;
-                cout << "loop-from: "<< from << "\n";
-
+    while( !f.fail() && from!=-2){
+        cout << from << ", "<< to << "\n";
+        if (Graph[from][0]==-1){
+            Graph[from][0]=to;
+        }else{
+            Graph[from].push_back(to);
         }
-        Graph.push_back(x);
-        cout<< "vector eleje: " << x[0];
-        var=from;
-        cout << "hejj: "<<var <<"\n";
-
-
-
-
+            getline(f,str);
+        cout << "string: " +  str + "\n";
+        istringstream is(str);
+        is >> from >> to;
+        from=from-1;
+        to=to-1;
     }
     return 0;
-
 }
 
 int MB(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs)
@@ -118,7 +104,7 @@ int MB(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs)
 	for (int i=0;i<Graph[startcsucs].size();i++){
         int j= Graph[startcsucs][i];
         cout << "szomszédok:  "<< j << "\n";
-		if (rooms[j]==0){
+		if (rooms[j]==0 && j!=-1){
             cout << "----------start:  "<< j << "\n";
 			MB(Graph,rooms,j);
 		}
@@ -134,7 +120,7 @@ int MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &tala
 		for (int i=0;i<Graph[startcsucs].size();i++){
             int j= Graph[startcsucs][i];
             cout << "szomszédok:  "<< j << "\n";
-			if (rooms[j]==0){
+			if (rooms[j]==0 && j!=-1){
                 cout << "----------start:  "<< j << "\n";
 				MB2(Graph,rooms,j,talalkozas,korseta,jerry);
 			}else if(rooms[j]==1){
@@ -147,6 +133,7 @@ int MB2(vector<vector<int> > Graph,vector<int> &rooms, int startcsucs,bool &tala
 				if ( j==jerry && startcsucs!=jerry){
 					korseta=true;
 				}
+                cout <<"körséta: "<< boolalpha << korseta<<" \n";
 			}
 		}
 	}
