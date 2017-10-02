@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1506609844 source:c:\users\koauaai\documents\tandj\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+
+1506691346 source:f:\tandj\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+
+1506770839 source:c:\users\akosztik\nevezetesalgritmusok\tandj\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+
+1506964013 source:c:\users\koauaai\downloads\nevezetesalgritmusok-master\tandj\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+

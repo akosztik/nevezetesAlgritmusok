@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1506969790 source:c:\users\koauaai\downloads\nevezetesalgritmusok-master\parositas\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+	<algorithm>
+
