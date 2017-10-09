@@ -39,7 +39,8 @@ int main()
             Graph.push_back(x);
         }
         GraphFiller(Graph, f);
-        int max=0,int index=0;
+        int max=0;
+        int index=0;
         for (int i=0; i>numberOfPlayers;i++){
             if (Graph[i].size()>max){
                 max=Graph[i].size();
