@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1511133098 source:c:\users\akosztik\nevezetesalgritmusok\savszelesseg\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+	<algorithm>
+	<utility>
+
