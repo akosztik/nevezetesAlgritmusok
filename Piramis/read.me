@@ -1,1 +1,28 @@
 47. Piramis
+Piramis
+
+A piramisépítők egy négyzet alapú területre építik a piramist. A terület minden egységnyi négyzetére adott darabszámú kőkockát helyeznek. Amikor egy újabb követ kell elhelyezni, akkor valahonnan a piramis széléről indulnak, és úgy haladnak, hogy minden lépésben pontosan eggyel magasabb szomszéd helyre lépnek. (A szomszédos hely átlósan nem lehet!) A követ mindig oda teszik, ahonnan nem tudnak szomszédos helyre továbblépni.
+
+Feladat:
+Készíts programot (PIRAMIS.PAS vagy PIRAMIS.C), amely megadja a leghosszabb utat, amelyen a piramisépítők egy követ elvihetnek a helyére!
+
+Bemenet:
+A PIRAMIS.BE állomány első sorában a piramist tartalmazó négyzet oldalhossza van (1<=N<=100). A következő N sor mindegyike N egész számot tartalmaz, egy-egy szóközzel elválasztva, az egyes pozíciókban lévő kockák számát.
+
+Kimenet:
+A PIRAMIS.KI állomány első sorába a leghosszabb út hosszát kell írni (azon lépések számát, ahány lépés alatt egy tetszőleges pozícióból szomszéd helyeken át egyesével lehet felfelé lépkedni), a második sorba pedig az ehhez az úthoz tartozó kezdő pozíció sor- és oszlopindexét. Ha sehonnan sem lehet lépni, akkor az első sorba 0, a második sorba tetszőleges pozíció írandó.
+
+Példa:
+PIRAMIS.BE
+PIRAMIS.KI
+6 
+1 2 2 2 2 2 
+4 3 4 2 2 1 
+1 1 5 6 1 8 
+1 1 1 9 6 7 
+1 3 4 4 5 1 
+1 2 1 1 1 1
+5 
+1 1
+ 
+ 
