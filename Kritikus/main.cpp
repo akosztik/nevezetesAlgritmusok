@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 #include <fstream>
 #include <stdlib.h>
 #include <sstream>
@@ -9,13 +10,12 @@
 
 using namespace std;
 
-int GraphFiller(vector<vector<int> > &Graph, ifstream &f , int utNum);
+int GraphFiller(vector<vector<int> > &Graph, ifstream &f ,vector<int> &kifok, vector<int> &befok, int utNum);
 int MB(vector<vector<int> >& Graph,stack<int>& s,vector<int> &szin, int startcsucs);
-int TopRend(vector<vector<int> >& Graph,stack<int>& s );
 
 int main()
 {
-    ifstream f("kritikus.be1");
+    ifstream f("kritikus.be5");
 
     if(f.fail()){
         cout << "Nincs meg a fájl!\n";
@@ -31,25 +31,48 @@ int main()
 
 
 
-
+        int u;
         vector<vector<int> > Graph;
         stack<int> s;
         vector<int> szin;
+        vector<int> kifok;
+        vector<int> befok;
+        vector<int> kritikuspontok;
 
         for (int j=0;j<ellNum;j++){
 
             vector<int> x;
             x.push_back(-1);
+            kifok.push_back(0);
+            befok.push_back(0);
             Graph.push_back(x);
+            szin.push_back(0);
+
         }
-        GraphFiller(Graph, f,utNum );
-        TopRend(Graph,s);
+        GraphFiller(Graph, f,kifok,befok,utNum );
+
+        for (int i=0;i<ellNum;i++){
+            if (szin[i]==0){
+                MB(Graph,s,szin,i);
+            }
+        }
         int c;
         c=0;
         while(!s.empty()){
-
+            u=s.top();
+            s.pop();
+            c=c-befok[u];
+            if(c==0){
+                kritikuspontok.push_back(u);
+            }
+            c=c+kifok[u];
         }
-
+        cout << "**********hanydb: "<< kritikuspontok.size()-2<<"\n";
+        for (int i=0;i<kritikuspontok.size();i++){
+            if(kritikuspontok[i]+1!=start && kritikuspontok[i]+1!=cel){
+                cout <<  kritikuspontok[i]+1<< " ";
+            }
+        }
 
     f.close();
     return 0;
@@ -60,7 +83,7 @@ int main()
 
 
 
-int GraphFiller(vector<vector<int> > &Graph,ifstream &f, int utNum ){
+int GraphFiller(vector<vector<int> > &Graph,ifstream &f,vector<int> &kifok, vector<int> &befok, int utNum ){
     int from, to;
     for (int i=0;i<utNum;i++){
 
@@ -68,49 +91,34 @@ int GraphFiller(vector<vector<int> > &Graph,ifstream &f, int utNum ){
         from=from-1;
         to=to-1;
 
-        cout << from << ", "<< to << "\n";
-
         if (Graph[from][0]!=-1){
             Graph[from].push_back(to);
+            kifok[from]++;
+            befok[to]++;
 
         }
         if (Graph[from][0]==-1){
             Graph[from][0]=to;
+            kifok[from]++;
+            befok[to]++;
         }
 
     }
     return 0;
 }
-int TopRend(vector<vector<int> >& Graph,stack<int>& s ){
 
-}
 
 int MB(vector<vector<int> > &Graph,stack<int>& s,vector<int> &szin, int startcsucs)
 {
-        //cout << "startcsucs: "<< startcsucs << "\n";
+        szin[startcsucs]=1;
         for (int i=0;i<Graph[startcsucs].size();i++){
             int j= Graph[startcsucs][i];
-            //cout << "szomszédok:  "<< j << "\n";
-            if (j!=startcsucs && j!=-1){
-               if (  szin[j]==0 ){
-                    //cout << "----------nem színezett/start:  "<< j << "\n";
-                    if (szin[startcsucs]==1){
-                        szin[j]=2;
-                    }else{
-                        szin[j]=1;
-                    }
-                    MB(Graph,szin,j,paros);
-                }else if( szin[j]==szin[startcsucs]){
-                    /*cout << "----------szinezett:  "<< j << "\n";
-                    cout << "----------startcsucs:  "<< szin[startcsucs] << "\n";
-                    cout << "----------szomszéd:  "<< szin[j] << "\n";
-
-                    paros=false;
-                }
+            if (szin[j]==0){
+                MB(Graph,s,szin,j);
             }
-
 		}
-
+		szin[startcsucs]=2;
+        s.push(startcsucs);
 
 
 	return 0;

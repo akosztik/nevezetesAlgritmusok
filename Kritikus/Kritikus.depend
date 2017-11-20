@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1511204963 source:c:\users\akosztik\nevezetesalgritmusok\kritikus\main.cpp
+	<iostream>
+	<vector>
+	<stack>
+	<fstream>
+	<stdlib.h>
+	<sstream>
+	<algorithm>
+
