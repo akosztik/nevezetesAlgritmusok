@@ -17,15 +17,15 @@ struct sav{
 };
 
 int GraphFiller(vector<vector<sav > > &Graph, ifstream &f , int kapcs);
-int FeltMaxKer(vector<vector<sav> >& Graph,vector<int> &d,vector<bool> &kesz, int startcsucs,int elozo, int& n);
+int FeltMaxKer(vector<vector<sav> >& Graph,vector<int> &d,vector<bool> &kesz, int startcsucs);
 
 
 int main()
 {
-    ifstream f("net4.in");
+    ifstream f("net.in");
 
     if(f.fail()){
-        cout << "Nincs meg a f�jl!\n";
+        cout << "Nincs meg a fájl!\n";
         exit(1);
 
     }
@@ -38,7 +38,7 @@ int main()
 
         vector<vector<sav> > Graph;
 
-        //g�pek �s kapcsolatok sz�m�nak beolvas�sa:
+        //gépek és kapcsolatok számának beolvasása:
 
         int gepek, kapcs;
         f >> gepek >> kapcs;
@@ -61,14 +61,9 @@ int main()
 
         int n=0;
         int start=0;
+        d[start]=0;
 
-        for (int z=0;z<Graph.size();z++){
-            if (Graph[z].size()==1 && Graph[z][0].to!=-1 ){
-                start=z;
-            }
-        }
-
-        FeltMaxKer(Graph, d,kesz, start,-1, n);
+        FeltMaxKer(Graph, d,kesz, start);
 
         cout<<"************** \n";
 
@@ -146,21 +141,27 @@ int GraphFiller(vector<vector<sav> > &Graph,ifstream &f , int kapcs){
 }
 
 
-int FeltMaxKer(vector<vector<sav> > &Graph,vector<int> &d,vector<bool> &kesz, int startcsucs,int elozo, int& n)
+int FeltMaxKer(vector<vector<sav> > &Graph,vector<int> &d,vector<bool> &kesz, int startcsucs)
 {
-    //cout << "startcsucs:  "<< startcsucs << "***************************  \n";
+    cout << "startcsucs:  "<< startcsucs << "***************************  \n";
     kesz[startcsucs]=true;
-    if (Graph[startcsucs][0].to!=-1 && n<d.size()){
+    if (Graph[startcsucs][0].to!=-1){
         int max=-1;
         int ind=0;
         for (int i=0;i<Graph[startcsucs].size();i++){
+
             if( Graph[startcsucs][i].suly > max && Graph[startcsucs][i].to!=elozo && !kesz[Graph[startcsucs][i].to]){
                 max=Graph[startcsucs][i].suly;
                 ind=i;
             }
+            if (!kesz[Graph[startcsucs][i].to]){
+              if
+            }
 
 		}
-		if(n==d.size()-1){
+		if(n==d.size()-1){semmit nem értek belőle...
+            mintha kinait olvasnék az előzőt még vmennnyire láttam mi történik
+
            d[startcsucs] =0;
 		}else{
             d[startcsucs]=Graph[startcsucs][ind].suly;
